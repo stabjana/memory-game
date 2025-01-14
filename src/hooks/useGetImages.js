@@ -32,7 +32,7 @@ const useGetImages = () => {
                     },
                 });
                 console.log("Pexels API response data:", response.data);
-                setImages(data.photos);
+                setImages(response.data.photos);
 
             } catch (error) {
                 if (error.response) {
