@@ -15,3 +15,9 @@ const RadioBox = ({ name, selectedItem, onChange }) => {
 };
 
 export default RadioBox;
+
+RadioBox.propTypes = {
+    name: PropTypes.string.isRequired,
+    selectedItem: PropTypes.string.isRequired,
+    onChange: PropTypes.func.isRequired,
+}
