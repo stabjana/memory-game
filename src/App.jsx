@@ -5,11 +5,15 @@ import Settings from "/src/components/Settings/Settings.jsx";
 function App() {
   const images = useGetImages();
 
+  const startGame = (options) => {
+    console.log(options);
+  }
+
   return (
     <>
       <Background />
       <h1>Memory Game</h1>
-      <Settings />
+      <Settings startGame={startGame} />
     </>
   );
 }

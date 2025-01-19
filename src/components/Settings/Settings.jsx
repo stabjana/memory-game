@@ -7,10 +7,14 @@ import PropTypes from 'prop-types';
 
 import styles from './Settings.module.css';
 
-const Settings = () => {
+const Settings = ({ startGame }) => {
     const [category, setCategory] = useState(CATEGORIES[0]);
     const [pace, setPace] = useState(CATEGORIES[0]);
     const [cardsCount, setCardsCount] = useState(INITIAL_CARDS_COUNT);
+
+    const onStartGameClick = () => {
+        startGame({ category, pace, cardsCount });
+    };
 
     return (
         <div className={styles.settings}>
@@ -42,6 +46,7 @@ const Settings = () => {
                         onChange={(e) => setPace(e.target.value)} />
                 ))}
             </div>
+            <button className={styles.button} onClick={onStartGameClick} >Start</button>
         </div>
     );
 };

@@ -31,7 +31,7 @@ const useGetImages = () => {
                         Authorization: import.meta.env.VITE_AUTH_KEY,
                     },
                 });
-                console.log("Pexels API response data:", response.data);
+                // console.log("Pexels API response data:", response.data);
                 setImages(response.data.photos);
 
             } catch (error) {

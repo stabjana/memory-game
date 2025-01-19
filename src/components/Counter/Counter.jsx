@@ -26,3 +26,8 @@ const Counter = ({ cardsCount, onClick }) => {
 };
 
 export default Counter;
+
+Counter.propTypes = {
+    cardsCount: PropTypes.number.isRequired,
+    onClick: PropTypes.func.isRequired
+}
