@@ -13,7 +13,8 @@ const Settings = ({ startGame }) => {
     const [cardsCount, setCardsCount] = useState(INITIAL_CARDS_COUNT);
 
     const onStartGameClick = () => {
-        startGame({ category, pace, cardsCount });
+        startGame({ category, pace, cardsCount }); // we pass props to app component (parent)
+        // it will call the function prop that is passed to the function in app
     };
 
     return (
@@ -52,3 +53,7 @@ const Settings = ({ startGame }) => {
 };
 
 export default Settings;
+
+Settings.propTypes = {
+    startGame: PropTypes.func.isRequired,
+}

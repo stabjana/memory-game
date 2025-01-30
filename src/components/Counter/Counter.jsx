@@ -13,7 +13,7 @@ const Counter = ({ cardsCount, onClick }) => {
     const onIncrement = (e) => {
         e.preventDefault();
         const number = cardsCount + STEP
-        if (number <= 100) onClick(number);
+        if (number <= 160) onClick(number);
     }
 
     return (
@@ -31,3 +31,4 @@ Counter.propTypes = {
     cardsCount: PropTypes.number.isRequired,
     onClick: PropTypes.func.isRequired
 }
+// 38minute

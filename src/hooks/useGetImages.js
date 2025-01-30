@@ -5,46 +5,49 @@ import { useEffect, useState } from "react";
 
 const getRandomPage = () => Math.round(Math.random() * (10 - 1) + 1);
 
-const useGetImages = () => {
+const useGetImages = (gameOptions) => {
     const [images, setImages] = useState([]);
 
     const buildUrl = () => {
         const url = new URL("https://api.pexels.com/v1/search");
         url.search = new URLSearchParams({
-            query: "nature", // TO DO: Replace with a variable for dynamic queries
+            query: gameOptions.category,
             orientation: "square",
             size: "small",
-            per_page: 2, // TO DO: Replace with a variable
+            per_page: gameOptions.cardsCount / 2,
             page: getRandomPage()
         });
         return url.toString(); // Convert the URL object to a string
     };
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                // Use the buildUrl function to generate the URL
-                const url = buildUrl();
+    const fetchPics = async () => {
+        try {
+            // Use the buildUrl function to generate the URL
+            const url = buildUrl();
 
-                const response = await axios.get(url, {
-                    headers: {
-                        Authorization: import.meta.env.VITE_AUTH_KEY,
-                    },
-                });
-                // console.log("Pexels API response data:", response.data);
-                setImages(response.data.photos);
+            const response = await axios.get(url, {
+                headers: {
+                    Authorization: import.meta.env.VITE_AUTH_KEY,
+                },
+            });
+            // console.log("Pexels API response data:", response.data);
+            setImages(response.data.photos);
 
-            } catch (error) {
-                if (error.response) {
-                    console.error("Error response:", error.response);
-                } else {
-                    console.error("Error message:", error.message);
-                }
+        } catch (error) {
+            if (error.response) {
+                console.error("Error response:", error.response);
+            } else {
+                console.error("Error message:", error.message);
             }
-        };
+        }
+    };
 
-        fetchData();
-    }, []);
+    // fetchPics();
+
+    useEffect(() => {
+        if (!gameOptions) return;
+        fetchPics();
+    }, [gameOptions]);
 
     return images;
 };
