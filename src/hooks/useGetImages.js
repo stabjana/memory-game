@@ -1,8 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 
-// const BASE_URL = 'https://api.pexels.com/v1/search';
-
 const getRandomPage = () => Math.round(Math.random() * (10 - 1) + 1);
 
 const useGetImages = (gameOptions) => {
@@ -24,6 +22,8 @@ const useGetImages = (gameOptions) => {
         try {
             // Use the buildUrl function to generate the URL
             const url = buildUrl();
+
+            console.log("API Key:", import.meta.env.VITE_AUTH_KEY);
 
             const response = await axios.get(url, {
                 headers: {
