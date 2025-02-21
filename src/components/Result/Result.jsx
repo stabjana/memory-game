@@ -1,10 +1,16 @@
 import styles from './Result.module.css';
 
-const Result = () => (
-    <div className={`${styles.container}`} onClick={onClick}>
-        <div className={`${styles.card} ${card.isShown ? styles.flipped : ''}`}>
-        </div>
+const Result = ({ restartGame }) => (
+    <div className={`${styles.container} frosted`}>
+        <p>Awesome!</p>
+        <button className={`${styles.button} frosted`} onClick={restartGame}>
+            Finish Game
+        </button>
     </div >
 );
 
 export default Result;
+
+Result.propTypes = {
+    restartGame: PropTypes.func.isRequired,
+};

@@ -7,7 +7,7 @@ import Card from '../Card/Card';
 import Result from '../Result/Result';
 import styles from './Board.module.css';
 
-const Board = ({ gameOptions }) => {
+const Board = ({ gameOptions, restartGame }) => {
     const [isLoading, setIsLoading] = useState(true);
     const images = useGetImages(gameOptions);
     const { cards, onCardClick, isWin } = useGameLogic(images, gameOptions.pace);
@@ -21,7 +21,7 @@ const Board = ({ gameOptions }) => {
 
     return (
         <div>
-            {isWin && <Result />}
+            {isWin && <Result restartGame={restartGame} />}
             {isLoading ? <Loader /> :
                 !isLoading && (
                     cards.map(card => <Card key={card.uniqueId} card={card} onCardClick={onCardClick} />)
@@ -37,6 +37,7 @@ Board.propTypes = {
     gameOptions: PropTypes.shape({
         pace: PropTypes.string.isRequired,
         cardsCount: PropTypes.number.isRequired,
-        category: PropTypes.string.isRequired
+        category: PropTypes.string.isRequired,
     }),
-}
+    restartGame: PropTypes.func.isRequired,
+};
