@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
-import useGetImages from "./../../hooks/useGetImages"
-import Loader from "./../Loader/Loader"
+import useGetImages from "./../../hooks/useGetImages";
+import Loader from "./../Loader/Loader";
 import useGameLogic from '../../hooks/useGameLogic';
 import Card from '../Card/Card';
+import Result from '../Result/Result';
 import styles from './Board.module.css';
 
 const Board = ({ gameOptions }) => {
     const [isLoading, setIsLoading] = useState(true);
     const images = useGetImages(gameOptions);
-    const { cards, onCardClick } = useGameLogic(images);
+    const { cards, onCardClick, isWin } = useGameLogic(images, gameOptions.pace);
 
     useEffect(() => {
         if (images.length > 0) {
@@ -20,6 +21,7 @@ const Board = ({ gameOptions }) => {
 
     return (
         <div>
+            {isWin && <Result />}
             {isLoading ? <Loader /> :
                 !isLoading && (
                     cards.map(card => <Card key={card.uniqueId} card={card} onCardClick={onCardClick} />)
@@ -31,7 +33,7 @@ const Board = ({ gameOptions }) => {
 export default Board;
 
 
-Board.proptypes = {
+Board.propTypes = {
     gameOptions: PropTypes.shape({
         pace: PropTypes.string.isRequired,
         cardsCount: PropTypes.number.isRequired,
