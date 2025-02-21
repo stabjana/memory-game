@@ -4,13 +4,13 @@ const Result = ({ restartGame }) => (
     <div className={`${styles.container} frosted`}>
         <p>Awesome!</p>
         <button className={`${styles.button} frosted`} onClick={restartGame}>
-            Finish Game
+            Play Again
         </button>
     </div >
 );
 
 export default Result;
 
-Result.propTypes = {
+/* Result.propTypes = {
     restartGame: PropTypes.func.isRequired,
-};
+}; */

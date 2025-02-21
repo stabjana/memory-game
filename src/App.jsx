@@ -18,7 +18,9 @@ function App() {
     <>
       <Background />
       <h1>Memory Game</h1>
-      {!gameOptions ? (<Settings startGame={startGame} />) : (<Board gameOptions={gameOptions} restartGame={restartGame} />)}
+      {!gameOptions ? (<Settings startGame={startGame} />
+      ) : (
+        <Board gameOptions={gameOptions} restartGame={restartGame} />)}
     </>
   );
 }
