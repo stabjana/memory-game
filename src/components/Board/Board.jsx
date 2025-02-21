@@ -38,5 +38,3 @@ Board.proptypes = {
         category: PropTypes.string.isRequired
     }),
 }
-// fetch images is empty array! when click start button
-// weiter ab 54 minute!!!

@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { addUniqueIds, getFormedData, getPairedPics, shuffleCards } from "../utils";
 
+const MAX_VISIBLE_CARDS = 2;
+
 const useGameLogic = (images) => {
 
     const [cards, setCards] = useState([]);
+    const [visibleCards, setVisibleCards] = useState([]);
 
     const prepareCards = () => {
         const a = getFormedData(images);
@@ -18,6 +21,7 @@ const useGameLogic = (images) => {
             if (card.uniqueId === clickedCardId) {
                 card.isShown = true;
             }
+            if (card.isShown) setVisibleCards(oldState => [...oldState, card.uniqueId])
 
             return card
         });
@@ -26,7 +30,9 @@ const useGameLogic = (images) => {
     };
 
     const onCardClick = clickedCardId => {
-        flipCard(clickedCardId);
+        if (visibleCards.length < MAX_VISIBLE_CARDS) {
+            flipCard(clickedCardId);
+        }
     };
 
     useEffect(() => {
