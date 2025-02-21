@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import styles from './Result.module.css';
 
 const Result = ({ restartGame }) => (
@@ -11,6 +12,6 @@ const Result = ({ restartGame }) => (
 
 export default Result;
 
-/* Result.propTypes = {
+Result.propTypes = {
     restartGame: PropTypes.func.isRequired,
-}; */
+};

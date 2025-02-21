@@ -1,15 +1,13 @@
-import React from 'react';
 import { useState } from 'react';
 import { CATEGORIES, PACE, INITIAL_CARDS_COUNT } from '../../constants.js';
 import RadioBox from '../RadioBox/RadioBox.jsx';
 import Counter from '../Counter/Counter.jsx'
 import PropTypes from 'prop-types';
-
 import styles from './Settings.module.css';
 
 const Settings = ({ startGame }) => {
     const [category, setCategory] = useState(CATEGORIES[0]);
-    const [pace, setPace] = useState(CATEGORIES[0]);
+    const [pace, setPace] = useState(PACE[1]);
     const [cardsCount, setCardsCount] = useState(INITIAL_CARDS_COUNT);
 
     const onStartGameClick = () => {
@@ -18,7 +16,7 @@ const Settings = ({ startGame }) => {
     };
 
     return (
-        <div className={styles.settings}>
+        <div className={`${styles.settings} frosted`}>
             <h2>Settings</h2>
             <h4>Category:</h4>
             <div className={styles.setting}>

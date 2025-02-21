@@ -35,7 +35,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.6);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
     transition: all 0.25s ease-in-out;
@@ -65,4 +65,13 @@
 
 .card.flipped {
     transform: rotateY(180deg);
+}
+
+.card.found {
+    background: rgba(243, 100, 200, 0.7) !important;
+    /* Kräftigeres Rosa */
+    box-shadow: inset 0 0 15px rgba(243, 100, 200, 0.8);
+    /* Leichtes Glühen */
+    transform: scale(1.05);
+    /* Leichter Zoom */
 }
