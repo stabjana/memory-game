@@ -1,0 +1,16 @@
+[build]
+  functions = "netlify/functions"  # Specifies the folder for serverless functions
+  publish = "dist"                 # Adjust if your build output is different
+
+[functions]
+  node_bundler = "esbuild"         # Ensures functions are bundled efficiently
+
+[dev]
+  command = "npm run dev"          # Command to run your app locally
+  port = 8888                      # Default Netlify dev server port
+  targetPort = 5173                # Adjust if your Vite dev server runs on a different port
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
