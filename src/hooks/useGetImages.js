@@ -1,48 +1,23 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-
-const getRandomPage = () => Math.round(Math.random() * (10 - 1) + 1);
 
 const useGetImages = (gameOptions) => {
     const [images, setImages] = useState([]);
 
-    const buildUrl = () => {
-        const url = new URL("https://api.pexels.com/v1/search");
-        url.search = new URLSearchParams({
-            query: gameOptions.category,
-            orientation: "square",
-            size: "small",
-            per_page: gameOptions.cardsCount / 2,
-            page: getRandomPage()
-        });
-        return url.toString(); // Convert the URL object to a string
-    };
-
     const fetchPics = async () => {
         try {
-            // Use the buildUrl function to generate the URL
-            const url = buildUrl();
-
-            console.log("API Key:", import.meta.env.VITE_AUTH_KEY);
-
-            const response = await axios.get(url, {
-                headers: {
-                    Authorization: import.meta.env.VITE_AUTH_KEY,
-                },
+            const response = await fetch("/.netlify/functions/fetchImages", {
+                method: "POST",
+                body: JSON.stringify(gameOptions),
             });
-            // console.log("Pexels API response data:", response.data);
-            setImages(response.data.photos);
 
+            if (!response.ok) throw new Error("Failed to fetch images");
+
+            const data = await response.json();
+            setImages(data);
         } catch (error) {
-            if (error.response) {
-                console.error("Error response:", error.response);
-            } else {
-                console.error("Error message:", error.message);
-            }
+            console.error("Error:", error.message);
         }
     };
-
-    // fetchPics();
 
     useEffect(() => {
         if (!gameOptions) return;
