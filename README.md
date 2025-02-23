@@ -8,10 +8,16 @@ Built with: React + JavaScript
 Images: Fetched from the Pexels API (because stock photos make everything better)
 Logic: Cards flip, reveal an image, and if they match, they stay. :fairy:
 
+## Deployment
+
+I created an extra **release** branch to deploy it on netlify. You can visit the game on:
+
+**https://stabjana-memory.netlify.app/**
+
 ## How to run it
 
 1. clone the repo to your local machine
-2. run this command to install the dependencies:
+2. run this command to install the dependencies in the main branch:
 
 ```shell
 npm i
